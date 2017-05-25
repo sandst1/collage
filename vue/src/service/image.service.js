@@ -22,6 +22,7 @@ class ImageService {
   loadImages() {
     const promise = new Promise((resolve) => {
       axios.get(this.IMG_URL).then((res) => {
+        this.store.images.length = 0;
         res.data.forEach((img) => {
           this.store.images.push(img);
         })
