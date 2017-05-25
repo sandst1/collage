@@ -27,6 +27,6 @@ export class ImageGridComponent implements OnInit {
   }
 
   showDetails(imageId: string) {
-    this.router.navigateByUrl(`image/${imageId}`);
+    this.router.navigateByUrl(`images/${imageId}`);
   }
 }

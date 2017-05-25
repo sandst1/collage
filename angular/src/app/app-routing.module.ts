@@ -14,7 +14,7 @@ const routes: Routes = [
     component: ImageGridComponent
   },
   {
-    path: 'image/:id',
+    path: 'images/:id',
     component: ImageDetailsComponent
   }
 ];
