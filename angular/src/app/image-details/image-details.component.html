@@ -1,0 +1,12 @@
+<div *ngIf="data" class="image-details">
+  <div class="back" (click)="back()">
+    Back  
+  </div>
+  <div class="row name">{{data.name}}</div>
+  <div class="row image">
+    <img [src]="data.url"/>
+  </div>
+  <div class="row description">
+    {{data.description}}
+  </div>
+</div>

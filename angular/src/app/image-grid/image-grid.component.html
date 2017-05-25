@@ -1,0 +1,8 @@
+<div class="images">
+  <div *ngFor="let image of images" class="image">
+    <app-image 
+      [data]="image"
+      (click)="showDetails(image.id)">
+    </app-image>
+  </div>
+</div>
