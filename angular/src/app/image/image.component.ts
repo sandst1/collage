@@ -1,5 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+
 import { ImageItem } from '../image-item';
+import { ImageService } from '../image.service';
 
 @Component({
   selector: 'app-image',
@@ -11,8 +13,22 @@ export class ImageComponent implements OnInit {
   @Input()
   data: ImageItem = null;
 
-  constructor() { }
+  @Output()
+  clicked = new EventEmitter();
+
+  constructor(
+    private imageService: ImageService
+  ) { }
 
   ngOnInit() {
+  }
+
+  remove(event) {
+    this.imageService.removeImage(this.data.id);
+    event.stopPropagation();
+  }
+
+  itemClicked() {
+    this.clicked.emit();
   }
 }

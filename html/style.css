@@ -63,6 +63,19 @@
   display: block;
 }
 
+.images .image .remove {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 40px;
+  height: 40px;
+  background: rgba(0, 0, 0, 0.6);
+  color: #ffffff;
+  cursor: pointer;
+  text-align: center;
+  line-height: 40px;
+}
+
 .image-details {
   text-align: center;
 }

@@ -1,3 +1,28 @@
-<p>
-  new-image works!
-</p>
+<div class="image">
+  <div class="add-image">
+    <div class="row">
+      <h4>New image</h4>
+    </div>
+    <div class="row">
+      <input 
+        type="text" 
+        placeholder="name"
+        [(ngModel)]="data.name"
+      />
+    </div>
+    
+    <div class="row">
+      <input 
+        type="text" 
+        placeholder="url"
+        [(ngModel)]="data.url"/>
+    </div>
+    <div class="row">
+      <button 
+        [disabled]="dataMissing()"
+        (click)="addNewImage()">
+        Add
+      </button>
+    </div>            
+  </div>
+</div>
