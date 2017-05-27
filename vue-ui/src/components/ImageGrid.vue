@@ -24,7 +24,6 @@
     },
 
     created() {
-      const vm = this;
       imageService.loadImages();
     },
 
