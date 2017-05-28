@@ -39,6 +39,11 @@
       "name": "treelapse",
       "url": "http://www.kevinboulanger.net/imagestb/treetimelapse2.jpg",
       "id": 7
+    },
+    {
+      "name": "flowers",
+      "url": "http://downloadicons.net/sites/default/files/flower-icons-96153.png",
+      "id": 8
     }
   ]
 }

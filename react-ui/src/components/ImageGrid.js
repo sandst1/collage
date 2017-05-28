@@ -1,16 +1,14 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
 
 import Image from './Image';
 import NewImage from './NewImage';
 import ImageService from '../service/image.service';
 
-const imageService = ImageService.instance();
-
 class ImageGrid extends Component {
   
   constructor() {
     super();
+    this.imageService = ImageService.instance();
     this.state = {
       images: [],
       redirectTo: null
@@ -18,7 +16,7 @@ class ImageGrid extends Component {
   }
 
   componentDidMount() {
-    imageService.loadImages().then((images) => {
+    this.imageService.loadImages().then((images) => {
       this.setState({
         images: images
       });
@@ -26,23 +24,43 @@ class ImageGrid extends Component {
   }
 
   imageClicked(imgId) {
-    console.log('clicked ', imgId);
-    this.setState({
-      redirectTo: `/images/${imgId}`
-    });
+    this.props.history.push(`/images/${imgId}`);
+  }
+
+  addImage(imgData) {
+    this
+      .imageService
+      .addImage({
+        name: imgData.name,
+        url: imgData.url
+      })
+      .then((images) => {
+        this.setState({
+          images: images
+        });
+      });
+  }
+
+  removeImage(imageId) {
+    this
+      .imageService
+      .removeImage(imageId)
+      .then((images) => {
+        this.setState({
+          images: images
+        });
+      });
   }
 
   render() {
-    if (this.state.redirectTo) {
-      return <Redirect to={this.state.redirectTo} />
-    }
-
     const imageElements = this.state.images.map((image) => {
       return (
         <Image 
           key={image.id} 
           imgData={image}
+          history={this.props.history}
           clicked={this.imageClicked.bind(this)}
+          remove={this.removeImage.bind(this)}
         />
       );
     });
@@ -50,7 +68,7 @@ class ImageGrid extends Component {
     return (
       <div className="images">
         {imageElements}
-        <NewImage />
+        <NewImage addImage={this.addImage.bind(this)}/>
       </div>
     );
   }

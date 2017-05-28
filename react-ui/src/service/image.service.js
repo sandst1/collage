@@ -45,22 +45,31 @@ class ImageService {
   }
 
   addImage(imageData) {
-    axios
-      .post(this.IMG_URL, imageData)
-      .then((res) => {
-        this.images.push(res.data);
-      });
+    const promise = new Promise((resolve) => {
+      axios
+        .post(this.IMG_URL, imageData)
+        .then((res) => {
+          this.images.push(res.data);
+          resolve(this.images);
+        });
+    });
+    return promise;
   }
 
   removeImage(imageId) {
-    axios
-      .delete(`${this.IMG_URL}/${imageId}`)
-      .then((res) => {
-        const idx = this.images.findIndex((img) => parseInt(img.id, 10) === parseInt(imageId, 10));
-        if (idx >= 0) {
-          this.images.splice(idx, 1);
-        }
-      });
+    const promise = new Promise((resolve) => {
+      axios
+        .delete(`${this.IMG_URL}/${imageId}`)
+        .then((res) => {
+          const idx = this.images.findIndex((img) => parseInt(img.id, 10) === parseInt(imageId, 10));
+          if (idx >= 0) {
+            this.images.splice(idx, 1);
+          }
+          resolve(this.images);
+        });
+    });
+
+    return promise;
   }
 
   _findImage(imageId) {

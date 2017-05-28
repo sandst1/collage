@@ -12,11 +12,11 @@ class App extends Component {
   render() {
     return (
       <div className='container'>
-        <Route path='/'>
+        <Route exact path='/'>
           <Redirect to='/images' />
         </Route>
-        <Route path='/images' component={ImageGrid} />
-        <Route path='/images/:id' component={ImageDetails} />
+        <Route exact path='/images' component={ImageGrid} />
+        <Route exact path='/images/:id' component={ImageDetails} />
       </div>
     );
   }
